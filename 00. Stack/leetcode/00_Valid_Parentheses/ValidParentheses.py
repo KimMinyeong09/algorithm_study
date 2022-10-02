@@ -4,12 +4,13 @@ class Solution:
         li = []
         
         for bracket in s:
-            if bracket in list(brackets.values()):
-                li.append(bracket)
-            elif bracket in list(brackets.keys()):
+            if bracket in brackets:
                 if len(li) == 0:
                     return False
+                
                 if li.pop() != brackets[bracket]:
                     return False
-        if len(li) == 0:
-            return True
+            else:
+                li.append(bracket)
+        
+        if len(li) == 0: return True
