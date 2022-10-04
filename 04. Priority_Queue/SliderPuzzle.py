@@ -124,21 +124,48 @@ def solveNprint(initialBoard):
 
 
 def solveManhattan(initialBoard):
-    assert(isinstance(initialBoard, Board))
+    pq = PriorityQueue()
+    states = []
+    prev = (0 + initialBoard.manhattan(), initialBoard, 0, None)
+    pq.put(prev)
+    
+    while True:
+        minNode = pq.get()
+        if minNode[1].isGoal():
+            break
+        else:
+            neighbors = minNode[1].neighbors()
+            if minNode[3] != None:  # parent 상태가 있다면 neighbors에 중복 확인 및 제거
+                parent = minNode[3][1]
+                if parent in neighbors:
+                    neighbors.remove(parent)
+            for neighbor in neighbors:
+                currentMove = minNode[2] + 1
+                temp = (currentMove + neighbor.manhattan(), neighbor, currentMove, minNode)
+                pq.put(temp)
+    state = minNode[1]
+    statParent = minNode[3]
+    while True:
+        states.append(state)
+        if statParent == None:
+            break
+        state = statParent[1]
+        statParent = statParent[3]
+    states.reverse()
 
+    return states
 
 
 if __name__ == "__main__":    
-    
     # Solvable in 0 move (already solved)
-    b10 = Board([[1,2,3],[4,5,6],[7,8,0]])    
+    b10 = Board([[1,2,3],[4,5,6],[7,8,0]])  
     solveNprint(b10)
     
     # Solvable in 4 moves
     b11 = Board([[0,1,3],[4,2,5],[7,8,6]])
     solveNprint(b11)    
-
-    '''
+    
+    
     # Solvable in 14 moves
     b12 = Board([[8,1,3],[4,0,2],[7,6,5]])
     solveNprint(b12)
@@ -157,7 +184,6 @@ if __name__ == "__main__":
     solveNprint(b15)
     print(b15.hamming())
     print(b15.manhattan())
-    '''
 
     '''
     #
