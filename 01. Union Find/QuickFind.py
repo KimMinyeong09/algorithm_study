@@ -2,7 +2,7 @@ N = 8
 
 ids = []
 for idx in range(N):    
-    ids.append(idx)
+    ids.append(idx) # 정점 번호로 ids[] 초기화
 
 def connected(p, q):
     return ids[p] == ids[q]
