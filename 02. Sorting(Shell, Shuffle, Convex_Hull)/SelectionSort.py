@@ -1,5 +1,5 @@
 def selectionSort(a):    
-    for i in range(len(a)-1):
+    for i in range(len(a)-1): # a[0] ~ a[N-2]까지 loop 돌면서 a[i]를 이동 대상으로 선정
         # Find the minimum in a[i]~a[N-1]
         min_idx = i
         for j in range(i+1, len(a)):
