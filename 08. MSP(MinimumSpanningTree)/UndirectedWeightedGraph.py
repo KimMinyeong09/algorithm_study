@@ -288,7 +288,7 @@ def mstPrimLazy(g):
         if not included[e.v]: include(e.v) # Add to the MST the vertex not yet included
         if not included[e.w]: include(e.w)
 
-    return edgesInMST, weightSum    
+    return edgesInMST, weightSum
 
 
 '''
@@ -296,7 +296,31 @@ Find an MST (Minimum Spanning Tree) using Prim's algorithm (eager version)
     and return the MST with its weight sum
 '''
 def mstPrimEager(g):    
-    return [], 0.0
+    def include(w):
+        included[w] = True
+        for e in g.adj[w]:  # e = w-x 간선
+            x = e.other(w)    
+            # print(x)
+            if not included[x]:
+                if not pq.contains(x): 
+                    pq.insert(x, e) # insert(index, key)
+                else:
+                    if pq.keyOf(x) > e:
+                        pq.decreaseKey(x, e)
+                    
+    edgesInMST = [] # Stores edges selected as part of the MST
+    included = [False] * g.V # included[v] == True if v is in the MST
+    weightSum = 0  # Sum of edge weights in the MST    
+    pq = IndexMinPQ(g.V) # Build a indexed priority queue
+    include(0)    
+    
+    while not pq.isEmpty() and len(edgesInMST) < g.V-1:
+        e, w = pq.delMin() # key, index
+        edgesInMST.append(e)
+        weightSum += e.weight
+        if not included[w]: include(w)
+
+    return edgesInMST, weightSum
 
 
 if __name__ == "__main__":
@@ -338,7 +362,7 @@ if __name__ == "__main__":
     minPQ.decreaseKey(3,'B')
     print(minPQ.delMin())
     print(minPQ.delMin())
-    print(minPQ.delMin())
+    print(minPQ.delMin()) 
     print(minPQ.delMin())    
     '''
     
@@ -347,6 +371,7 @@ if __name__ == "__main__":
     print("Kruskal on g8", mstKruskal(g8))    
     print("Prim lazy on g8", mstPrimLazy(g8))    
     print("Prim eager on g8", mstPrimEager(g8))
+    
     edges, weightSum = mstPrimEager(g8)
     failCorrectness = False    
     if edges == [Edge(0,7,0.16), Edge(1,7,0.19), Edge(0,2,0.26), Edge(2,3,0.17), Edge(5,7,0.28), Edge(4,5,0.35), Edge(2,6,0.4)]: print ("pass")
@@ -369,6 +394,7 @@ if __name__ == "__main__":
         if tPrimEager < tKruskal and tPrimEager < tPrimLazy: print ("pass")
         else: print ("fail")
     print()
+    
 
     g8a = WUGraph.fromFile("wugraph8a.txt")    
     print("Kruskal on g8a", mstKruskal(g8a))    
@@ -392,6 +418,3 @@ if __name__ == "__main__":
         if tPrimEager < tKruskal and tPrimEager < tPrimLazy: print ("pass")
         else: print ("fail")
     print()
-
-    
-    
