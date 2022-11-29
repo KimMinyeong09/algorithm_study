@@ -254,8 +254,55 @@ class BaseballElimination:
     # Return (True, a list of team names responsible for the elimination), if teamName must be eliminated
     # Return (False, []), if teamName is NOT eliminated yet
     def isEliminated(self, teamName):
-        return True, []
+        result = []
+        # 초기화
+        checkTeamid = self.team2id[teamName]
+        teamv = len(self.teams)
+        maxwin =self.wins[checkTeamid] + self.remaining[checkTeamid]
 
+        for i in range(teamv):
+            if i != checkTeamid:
+                if maxwin < self.wins[i]:
+                    result.append(self.teams[i])
+        
+        if len(result) > 0:
+            return True, result
+
+        gamev = (int)((teamv - 1) * teamv / 2)
+        v = teamv + gamev + 2
+        # print(checkTeamid, teamv, gamev, v)
+
+        temp = 0
+
+        g = FlowNetwork(teamv + gamev + 2) # s:0, t: v-1, game:1 ~ gamev, team: gamev+1 ~ v-2
+        for i in range(0, teamv - 1):
+            for j in range(i + 1, teamv):
+                temp += 1
+                if i == checkTeamid or j == checkTeamid:
+                    continue
+                # s-game vertex connect
+                g.addEdge(FlowEdge(0, temp, self.against[i][j]))
+                # game - team vertex connect
+                g.addEdge(FlowEdge(temp, i + gamev + 1 , float('inf')))
+                g.addEdge(FlowEdge(temp, j + gamev + 1, float('inf')))
+        for i in range(gamev+1, v-1):
+            g.addEdge(FlowEdge(i, v-1, maxwin - self.wins[i - gamev - 1]))
+
+
+        # print(g)
+        ffg = FordFulkerson(g, 0, g.V-1)
+        # print("ff8m.flow", ffg.flow)     
+        # print("ff8m.g", ffg.g)    
+
+        for i in range(gamev+1, v-1):
+            if i-gamev-1 == checkTeamid:
+                continue
+            if ffg.inCut(i):
+                result.append(self.teams[i-gamev-1])
+        
+        if len(result) > 0:
+            return True, result
+        return False, []
 
 if __name__ == "__main__":
     '''# Unit test for FlowEdge
@@ -348,14 +395,14 @@ if __name__ == "__main__":
     print()
     print(findAugmentingPathBFS(ff8.g, 0))'''
 
-    
+    '''
     # Unit test for FordFulkerson
     g8 = FlowNetwork.fromFile("flownet8.txt")    
     ff8 = FordFulkerson(g8, 0, g8.V-1)
     print("ff8.flow", ff8.flow) # 28.0
     print("ff8.g", ff8.g)    
     print("ff8.inCut:", end=' ') # 0 2 3 6
-    for v in range(g8.V):
+    for v in range(g8.V): # 출발지 쪽에 속한게 출력됨.
         if ff8.inCut(v): print(v, end=' ')
     print()
     
@@ -379,7 +426,7 @@ if __name__ == "__main__":
     for v in range(g8m.V):
         if ff8m.inCut(v): print(v, end=' ')
     print()
-    '''
+    
     g4 = FlowNetwork.fromFile("flownet4.txt")    
     ff4 = FordFulkerson(g4, 0, g4.V-1)
     print("ff4.flow", ff4.flow) # 200.0
@@ -461,7 +508,7 @@ if __name__ == "__main__":
     print()
     '''
 
-    '''# Unit test for BaseballElimination
+    # Unit test for BaseballElimination
     be4 = BaseballElimination("teams4.txt")
     print(be4)
     be4.printResult()    
@@ -520,4 +567,4 @@ if __name__ == "__main__":
     if be12.isEliminated("Chile") == (True, ['Poland', 'USA', 'Brazil', 'Iran']): print("P ",end='')
     else: print("F ",end='')
     print()
-    print()'''
+    print()
