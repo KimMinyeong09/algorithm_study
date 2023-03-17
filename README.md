@@ -8,8 +8,8 @@
 # 🔖 Table of Contents...
 ## CH0. Stack
 ### LEETCODE
-- 20. Valid Parentheses
-- 32. Longest valid parentheses
+- 20 Valid Parentheses
+- 32 Longest valid parentheses
 
 ## CH1. UF: Union Find
 
@@ -33,4 +33,4 @@
 
 ## CH11. DP: Dynamic Programming
 ### LEETCODE
-- 413. Arithmetic Slices
+- 413 Arithmetic Slices
