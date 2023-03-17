@@ -34,3 +34,4 @@
 ## CH11. DP: Dynamic Programming
 ### LEETCODE
 - 413 Arithmetic Slices
+- 357 Count Numbers with Unique Digits
