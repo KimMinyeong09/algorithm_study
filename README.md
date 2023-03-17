@@ -1,6 +1,16 @@
 # 📖 Algorithm Study
+알고리즘 개념 및 이론 정리
 
-## << 🔖 Table of Contents...  >>
+<a href="https://www.notion.so/e85505c7e78e475eaf0b75622f1fa848?pvs=4" target="_blank"><img src="https://img.shields.io/badge/Notion : Algorithm-black?style=for-the-badge&logo=notion&logoColor=white"/></a>
+
+</br>
+
+# 🔖 Table of Contents...
+## CH0. Stack
+### LEETCODE
+- 20. Valid Parentheses
+- 32. Longest valid parentheses
+
 ## CH1. UF: Union Find
 
 ## CH2. Sorting: Shell, Shuffle, Convex_Hull Algorithms
@@ -11,24 +21,16 @@
 
 ## CH5. Symbol Table
 
-## 🖇️ CH6. Directed Graph
-<a href="https://www.notion.so/CH06-Graphs-1aa0930dacd7424db4eaba59d0361ce7" target="_blank"><img src="https://img.shields.io/badge/Notion 정리-black?style=for-the-badge&logo=notion&logoColor=white"/></a>
-<a href="https://oval-efraasia-8c2.notion.site/CH06-Graphs-43c5ecb7ce3d43d6bfce4a07b09b7f4f"><img src="https://img.shields.io/badge/Notion 실습-gray?style=for-the-badge&logo=notion&logoColor=white"/></a>
+## CH6. Directed Graph
 
-## 🖇️ CH7. Cycle Detection & WordNet
-<a href="https://oval-efraasia-8c2.notion.site/CH07-Cycle-Detection-WordNet-9d94dda422564481ace21c0e71c77a95" target="_blank"><img src="https://img.shields.io/badge/Notion 정리-black?style=for-the-badge&logo=notion&logoColor=white"/></a>
-<a href="https://oval-efraasia-8c2.notion.site/CH07-Cycle-Detection-WordNet-49e08d3e3a804a6980e0e8b6a4d6cf56" target="_blank"><img src="https://img.shields.io/badge/Notion 실습-gray?style=for-the-badge&logo=notion&logoColor=white"/></a>
+## CH7. Cycle Detection & WordNet
 
-## 🖇️ CH8. MSP: Minimum Spanning Tree
-<a href="https://oval-efraasia-8c2.notion.site/CH08-MST-Minimum-Spanning-Tree-5367d8840dc64edc810f85da1d701ded" target="_blank"><img src="https://img.shields.io/badge/Notion 정리-black?style=for-the-badge&logo=notion&logoColor=white"/></a>
-<a href="https://oval-efraasia-8c2.notion.site/CH08-MST-Minimum-Spanning-Tree-e31bf66cde5e44dab5623c81e4be5017" target="_blank"><img src="https://img.shields.io/badge/Notion 실습-gray?style=for-the-badge&logo=notion&logoColor=white"/></a>
+## CH8. MSP: Minimum Spanning Tree
 
-## 🖇️ CH9. SPT: Shortest Path Tree
-<a href="https://oval-efraasia-8c2.notion.site/CH09-SPT-Shortest-Path-Tree-c104e580bf4246928e675ac9a224274b" target="_blank"><img src="https://img.shields.io/badge/Notion 정리-black?style=for-the-badge&logo=notion&logoColor=white"/></a>
-<a href="https://oval-efraasia-8c2.notion.site/CH09-SPT-Shortest-Path-Tree-7bcede48b9554caa9e46475f2efe1b86" target="_blank"><img src="https://img.shields.io/badge/Notion 실습-gray?style=for-the-badge&logo=notion&logoColor=white"/></a>
+## CH9. SPT: Shortest Path Tree
 
-## 🖇️ CH10. Max Flow & Min Cut
-<a href="https://oval-efraasia-8c2.notion.site/CH10-Max-Flow-Min-Cut-4f4949d7628f40eaaf63a30a9ecf0f12" target="_blank"><img src="https://img.shields.io/badge/Notion 정리-black?style=for-the-badge&logo=notion&logoColor=white"/></a>
-<a href="https://oval-efraasia-8c2.notion.site/CH10-Max-Flow-Min-Cut-d6d21fba91344272a0e9f3e8dea68488" target="_blank"><img src="https://img.shields.io/badge/Notion 실습-gray?style=for-the-badge&logo=notion&logoColor=white"/></a>
+## CH10. Max Flow & Min Cut
 
----
+## CH11. DP: Dynamic Programming
+### LEETCODE
+- 413. Arithmetic Slices
